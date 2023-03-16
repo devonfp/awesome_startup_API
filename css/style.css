@@ -1,0 +1,34 @@
+
+/*The modal window needs to use absolute positioning to display correctly*/ 
+body {
+    position: relative;
+    }
+
+ 
+ 
+    /* targeting the overlay will create the semi transparent background of the modal that covers the whole window.
+  Setting left, right, top, and bottom properties all to 0, this will force the
+  overlay to expand across the whole document.
+
+  No width or height properties are set for the overlay, the size
+is controlled by the properties above.*/
+    .overlay {
+        position: absolute; /*removes the element from the normal document flow.*/
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(100, 100, 100, 0.4)
+        }
+ 
+        .modal {
+            width: 375px;
+            margin: 15% auto auto;
+            position: relative;
+            text-align: center;
+            background: #fff;
+            border: 1px solid #778;
+            border-radius: 5px;
+            padding: 30px 20px;
+            }
+            
