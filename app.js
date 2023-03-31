@@ -11,22 +11,20 @@ const modalClose = document.querySelector(".modal-close");
 fetch(urlAPI) 
     .then(res => res.json())
     .then(res => res.results)
-    .then(data => {
-        console.log(data)
-    displayEmployees(data)
-    })
+    .then(data => displayEmployees(data))
     .catch(error => console.error(error))
 
     
 
 
-function displayEmployees(EmployeeData) {
-// we are letting the employees varriable equal a new variable (EmployeeData)
-// so that it can be accessed outside of this function
-employees = EmployeeData;
- 
 
-let employeeHTML = '';
+// Displays all employee data into the employee cards     
+function displayEmployees(EmployeeData) {
+
+employees = EmployeeData; /*we are letting the employees varriable equal a new variable (EmployeeData) so that it can be accessed outside of this function*/
+
+let employeeHTML = ''; // Stores the HTML code for each employee card that will be displayed on the page
+
 
 employees.forEach((employee, index) => {
 
@@ -35,7 +33,6 @@ employees.forEach((employee, index) => {
     let city = employee.location.city;
     let picture = employee.picture; 
     let state = employee.location.state;
-    //let street = employee.location.street;
 
 employeeHTML += `
 <div class="card" data-index="${index}">
@@ -50,25 +47,20 @@ employeeHTML += `
 });
 gridContainer.innerHTML = employeeHTML; 
 } 
-//displayEmployees(EmployeeData)
-//console.log(displayEmployees(EmployeeData))
 
 
 
 
-
-
-
+// Displays all employee data into the modal window
 function displayModal(index) {
 
-// use object destructuring make our template literal cleaner
+// Object destructuring
 let { name, dob, phone, email, location: { city, street, state, postcode
 }, picture } = employees[index];
 let date = new Date(dob.date);
 
 const modalHTML = `
 <img class="avatar" src="${picture.large}"/>
-<div id='text-container-modal'>
 <h2 class="name">${name.first} ${name.last}</h2>
 <p class="email">${email}</p>
 <p class="address">${city}</p>
@@ -77,33 +69,22 @@ const modalHTML = `
 <p class="address">${street.name}, ${city}, ${state}, ${postcode}</p>
 <p>Birthday:
 ${date.getMonth()}/${date.getDate()}/${date.getFullYear()}</p>
-</div>
 `;
 overlay.classList.remove("hidden");
 modalContainer.innerHTML = modalHTML;
 }
 
 
+//Modal appear: Makes the modal appear upon clicking a card
 gridContainer.addEventListener('click', e => {
-    // make sure the click is not on the gridContainer itself
-    if (e.target !== gridContainer) {
-    // select the card element based on its proximity to actual element clicked
+    if (e.target !== gridContainer) {   // assures the click is not on the gridContainer itself
     const card = e.target.closest(".card");
     const index = card.getAttribute('data-index');
     displayModal(index);
     }
     });
 
-
-
+// Modal removal: Removes modal by adding hidden class upon clicking "X"    
     modalClose.addEventListener('click', () => {
         overlay.classList.add("hidden");
         });
-
-
-
-    //Promise.all([
-        //fetchData(urlAPI)
-      //])           
-           
-           //.catch(error => console.log('Looks like there was a problem!', error))

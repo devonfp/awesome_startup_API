@@ -1,22 +1,38 @@
 
-
-
-
-
-
-
-/*The modal window needs to use absolute positioning to display correctly*/ 
+/*The modal window needs to use absolute positioning to display correctly (fits the entire screen)*/ 
 body {
-position: relative;
-font-family: 'Khand', sans-serif;
-background-color: #f5f1f1
-    }
+  position: absolute;
+  font-family: 'Khand', sans-serif;
+  background-color: #f5f1f1;
+}
 
     h1 {
       color: #565656;   
+      padding-left: 5%;
      }
 
- 
+     .grid-container {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      justify-content: center;
+  }
+
+
+  p {
+    color: rgb(59 59 59 / 56%);
+  }
+
+  .card {
+    margin: 15px;
+    width: 380px;
+    display: flex;
+    background-color: #f7f7f7;
+    border: 1px solid #9d9a9a;
+    border-radius: 4px;
+    justify-content: center;
+}
+
  
     /* targeting the overlay will create the semi transparent background of the modal that covers the whole window.
   Setting left, right, top, and bottom properties all to 0, this will force the
@@ -33,47 +49,15 @@ is controlled by the properties above.*/
         background: rgba(100, 100, 100, 0.4)
         }
 
-        .grid-container {
-          display: flex;
-          flex-wrap: wrap;
-          /*max-width: 1100px;*/
-          padding: 20px 10px 10px;
-          margin: 0 auto;
-          margin-bottom: 20px;
-          border-top: solid #000;
-          border-bottom: 4px solid #ccc;
-          border-radius: 0 0 5px 5px;
-          transition: all .5s;
-          justify-content: center;
-      }
 
-      .text-container {
-        text-align: start;
-      }
-
-
-      .card {
-        margin: 15px;
-        min-height: 150px;
-        text-align: center;
-        letter-spacing: 1px;
-        padding: 5px;
-        width: 410px;
-        display: flex;
-        background-color: snow;
-        border: 1px solid grey;
-        border-radius: 4px;
-
-    }
       
-
       .avatar {
         width: 100%;
         border-radius: 50%;
-          width: 100px;
-          height: 100px;
-          margin-right: 1rem;
-
+        width: 100px;
+        height: 100px;
+        margin-right: 1rem;
+        margin-top: 10px;
       }
  
         .modal {
@@ -87,14 +71,10 @@ is controlled by the properties above.*/
             padding: 30px 20px;
             }
 
-          #text-container-modal {
-            text-align: center;
-          }
-
-          /* You will use absolute positioning for the close button in
-order to put it in the top right of the modal. */
+          
             .modal-close {
-              position: absolute;
+              position: absolute; /* absolute positioning is used for the close button in
+              order to put it in the top right of the modal. */
               right: 5px;
               top: 5px;
               cursor: pointer;
